@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import NavBar from "./NavBar";
+import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import CreateCrosswalkPage from "./CreateCrosswalkPage"
+import HomePage from "./HomePage";
+import CreatePedestrianPage from './CreatePedestrianPage';
+import CreateVehiclePage from './CreateVehiclePage';
+import CrosswalkDetailPage from './CrosswalkDetailPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <NavBar />
+      <div className="App">
+      <Switch>
+        <Route path="/" component={HomePage} exact/>
+        <Route path="/create_crosswalk" component={CreateCrosswalkPage} />
+        <Route path="/create_pedestrian" component={CreatePedestrianPage} />
+        <Route path="/create_vehicle" component={CreateVehiclePage} />
+        <Route path="/crosswalk/:crosswalkID" component={CrosswalkDetailPage} />
+      </Switch>
+      </div>
+    </Router>
   );
 }
+
+/*
+<Route path="/update" exact component={SelectPedestrianPage} />
+<Route path="/update/:pedestrianID" component={UpdatePositionPage} />
+*/
+
 
 export default App;
