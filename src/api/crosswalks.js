@@ -41,6 +41,22 @@ export const getCrosswalk = (id) => {
     }).then((response) => response.json())
 }
 
+export const updateCrosswalk = (id, state) => {
+    console.log("Updating crosswalk: " + id)
+    console.log("State: " + state);
+    const json = JSON.stringify({id: id, state: state});
+    return fetch(API_LAYER_ADDRESS + "crosswalk/" + id, 
+    {
+        method: "PUT",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+        },
+        body: json
+    }).then((response) => response.json())
+}
+
 export const getNearbyPedestrians = (id) => {
     console.log("Getting crosswalk nearby pedestrians: " + id)
     return fetch(API_LAYER_ADDRESS + "crosswalk/" + id + "/nearby_pedestrians", 
